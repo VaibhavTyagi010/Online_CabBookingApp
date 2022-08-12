@@ -1,4 +1,4 @@
-package com.masai.model;
+package com.masai.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
