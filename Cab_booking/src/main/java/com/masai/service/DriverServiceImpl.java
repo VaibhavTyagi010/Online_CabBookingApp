@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.entity.Cab;
 import com.masai.entity.Driver;
 import com.masai.exception.DriverException;
 import com.masai.exception.InvalidId;
+import com.masai.repository.CabDao;
 import com.masai.repository.DriverDao;
 @Service
 public class DriverServiceImpl implements DriverService {
@@ -16,8 +18,13 @@ public class DriverServiceImpl implements DriverService {
 	@Autowired
 	private DriverDao dDao;
 	
+	@Autowired
+	private CabDao cDao;
+	
 	@Override
 	public Driver insertDriver(Driver driver) {
+		Cab cab= driver.getCab();
+		cDao.save(cab);
 		Driver savedDriver= dDao.save(driver);
 		return savedDriver;
 	}
