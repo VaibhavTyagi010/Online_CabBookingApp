@@ -3,7 +3,7 @@ package com.masai.service;
 import com.masai.entity.Admin;
 
 public interface AdminService {
-	public Admin saveAdmin(Admin admin) throws InvalidDetails;
+	/*public Admin saveAdmin(Admin admin) throws InvalidDetails;
 	
 	public Admin update(Admin admin) throws InvalidDetails;
 	
@@ -15,6 +15,6 @@ public interface AdminService {
 	
 	public List<TripBooking> getTripsCustomerwise();
 	
-	public List<TripBooking> getTripsDatewise();
+	public List<TripBooking> getTripsDatewise();*/
 	
 }
