@@ -20,6 +20,7 @@ public class Cab {
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
 private Integer cabId;
-private String cabType;
+private String carType;
 private Integer ratePerKm;
+
 }
