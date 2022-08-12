@@ -20,6 +20,6 @@ public interface AdminService {
 	
 	public List<TripBooking> getTripsCustomerwise();
 	
-	public List<TripBooking> getTripsDatewise();
+	public List<TripBooking> getTripsDatewise() throws AdminExceptions;
 	
 }
