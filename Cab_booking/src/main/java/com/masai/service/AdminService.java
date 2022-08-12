@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.masai.entity.Admin;
 import com.masai.entity.TripBooking;
-import com.masai.exceptions.AdminExceptions;
+import com.masai.exception.AdminExceptions;
 
 public interface AdminService {
 	
