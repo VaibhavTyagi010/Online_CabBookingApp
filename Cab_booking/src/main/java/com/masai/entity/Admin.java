@@ -22,7 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @PrimaryKeyJoinColumn(name="email")
-public class Admin extends AbstractUser{
+public class Admin extends Abstractuser{
 	@Id
 	private Integer adminId;
 
