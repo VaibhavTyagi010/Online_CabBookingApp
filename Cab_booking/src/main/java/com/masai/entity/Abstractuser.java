@@ -22,14 +22,14 @@ public class Abstractuser {
 	@NotNull(message = "{notNull}")
 	private String Username;
 	
-	@Size(min = 4, max = 20, message = "{Password Range}")
+	@Size(min = 4, max = 20, message = "{PasswordRange}")
 	@NotNull(message = "{notNull}")
 	private String Password;
 	
-	@Size(min = 10,message = "{Mobile Range}")
+	@Size(min = 10, max=10, message = "{MobileRange}")
 	private Long Mobile;
 	
-	@Size(min = 3, max = 255, message = "{Adress Range}")
+	@Size(min = 3, max = 255, message = "{AddressRange}")
 	@NotNull(message = "{notNull}")
 	private String Address;
 	
