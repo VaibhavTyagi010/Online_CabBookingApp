@@ -18,11 +18,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+//@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Costomer extends Abstractuser {
+public class Customer extends Abstractuser {
 	@PrimaryKeyJoinColumn
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

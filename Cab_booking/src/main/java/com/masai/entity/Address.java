@@ -14,6 +14,6 @@ import lombok.Setter;
 @Entity
 public class Address {
 	private String city;
-	private String state;
+	private State state;
 	private String pincode;
 }
