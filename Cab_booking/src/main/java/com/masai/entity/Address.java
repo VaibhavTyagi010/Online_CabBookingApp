@@ -1,6 +1,7 @@
 package com.masai.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,5 +16,6 @@ import lombok.Setter;
 public class Address {
 	private String city;
 	private String state;
+	@Id
 	private String pincode;
 }
