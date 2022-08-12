@@ -26,4 +26,5 @@ public class Admin extends Abstractuser{
 	@Id
 	private Integer adminId;
 
+
 }

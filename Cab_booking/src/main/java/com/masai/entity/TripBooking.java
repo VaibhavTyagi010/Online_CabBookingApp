@@ -24,6 +24,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class TripBooking {
+	
 	   @Id
 	   @GeneratedValue(strategy = GenerationType.AUTO)
 	   @EqualsAndHashCode.Include
