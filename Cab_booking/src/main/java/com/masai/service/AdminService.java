@@ -8,7 +8,9 @@ import com.masai.exception.AdminExceptions;
 
 public interface AdminService {
 
+
 	/*public Admin saveAdmin(Admin admin) throws InvalidDetails;
+
 	
 	public Admin saveAdmin(Admin admin) throws AdminExceptions;
 	
@@ -23,7 +25,9 @@ public interface AdminService {
 	public List<TripBooking> getTripsCustomerwise();
 	
 
+
 	public List<TripBooking> getTripsDatewise();*/
+
 
 	
 }

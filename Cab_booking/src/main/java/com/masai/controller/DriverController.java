@@ -2,6 +2,8 @@ package com.masai.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class DriverController {
 private DriverService dService;
 
 @PostMapping("/drivers")
-public ResponseEntity<Driver> insertDriver(@RequestBody Driver driver){
+public ResponseEntity<Driver> insertDriver(@Valid @RequestBody Driver driver){
 	Driver addedDriver= dService.insertDriver(driver);
 	return new ResponseEntity<Driver>(addedDriver,HttpStatus.ACCEPTED);
 }
@@ -32,12 +34,12 @@ public ResponseEntity<Driver> viewDriverById(@PathVariable("id") Integer id){
 	return new ResponseEntity<Driver>(foundDriver,HttpStatus.ACCEPTED);
 }
 @PutMapping("/drivers")
-public String updateDriver(@RequestBody Driver driver) {
+public String updateDriver(@Valid @RequestBody Driver driver) {
 	Driver updateddriver=dService.updateDriver(driver);
 	return "Driver updated "+updateddriver;
 }
 @DeleteMapping("/drivers")
-public String deleteDriver(@RequestBody Driver driver) {
+public String deleteDriver(@Valid @RequestBody Driver driver) {
 	Driver deletedDriver=dService.deleteDriver(driver);
 	return "Driver deleted "+deletedDriver;
 }
