@@ -14,12 +14,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
-@PrimaryKeyJoinColumn(name="Email")
+@PrimaryKeyJoinColumn(name="adminId")
 public class Admin extends Abstractuser {
 	
-	private Integer adminId;
-
 }

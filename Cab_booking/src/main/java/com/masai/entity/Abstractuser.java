@@ -2,7 +2,10 @@ package com.masai.entity;
 
 
 
+import javax.annotation.Generated;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -24,6 +27,9 @@ import javax.validation.constraints.Email;
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class Abstractuser {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer userId;
 	
 	@Size(min = 3, max = 255, message = "{nameRange}")
 	@NotNull(message = "{notNull}")
@@ -40,7 +46,6 @@ public abstract class Abstractuser {
 	
 	@Email
 	@NotNull(message = "{notNull}")
-	@Id
 	private String Email;
 
 }

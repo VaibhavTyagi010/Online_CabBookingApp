@@ -9,7 +9,7 @@ import com.masai.entity.Customer;
 
 
 @Repository
-public interface CostomerDao  {
+public interface CustomerDao extends JpaRepository<Customer, Integer> {
 
 }
 

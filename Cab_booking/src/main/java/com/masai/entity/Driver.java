@@ -21,9 +21,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Driver extends Abstractuser {
-@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-private Integer id;
+
 private Integer licenseNo;
 private Integer rating;
 private Boolean available;
