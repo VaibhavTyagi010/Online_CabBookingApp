@@ -18,5 +18,5 @@ import lombok.Setter;
 @Entity
 @PrimaryKeyJoinColumn(name="adminId")
 public class Admin extends Abstractuser {
-	
+
 }

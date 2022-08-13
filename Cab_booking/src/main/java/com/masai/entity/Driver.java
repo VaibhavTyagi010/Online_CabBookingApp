@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -15,14 +16,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-//@Entity
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class Driver extends Abstractuser {
 
+
+
+@NotNull
+@Min(value=1, message="id should be more than 1")
+private Integer id;
+@Min(value=1, message="id should be more than 1")
+
 private Integer licenseNo;
+@Min(value=1, message="id should be more than 1")
 private Integer rating;
 private Boolean available;
 

@@ -9,6 +9,10 @@ import com.masai.entity.TripBooking;
 import com.masai.exception.AdminExceptions;
 
 public interface AdminService {
+
+
+	public Admin saveAdmin(Admin admin) throws InvalidDetails;
+
 	
 	public Admin saveAdmin(Admin admin) throws AdminExceptions;
 	
@@ -26,5 +30,9 @@ public interface AdminService {
 	
 	public List<TripBooking> getTripsDatewiseAndCustomer(Integer customerId,LocalDate date) throws AdminExceptions;
 	
+
+
+	public List<TripBooking> getTripsDatewise();
+
 	
 }
