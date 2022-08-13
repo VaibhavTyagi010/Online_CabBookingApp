@@ -6,9 +6,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+
 @Entity
+@NoArgsConstructor
 @PrimaryKeyJoinColumn(name="adminId")
 public class Admin extends Abstractuser {
+
 
 }
