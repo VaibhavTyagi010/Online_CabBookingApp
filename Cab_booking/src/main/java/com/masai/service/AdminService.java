@@ -10,7 +10,7 @@ import com.masai.exception.AdminExceptions;
 
 public interface AdminService {
 
-
+	
 	
 	public Admin saveAdmin(Admin admin) throws AdminExceptions;
 	

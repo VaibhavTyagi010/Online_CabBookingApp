@@ -31,4 +31,6 @@ public class Customer extends Abstractuser {
 	private boolean journey_status;
 	
 	
+	
+	
 }

@@ -13,44 +13,59 @@ import com.masai.entity.Customer;
 import com.masai.entity.TripBooking;
 import com.masai.exception.AdminExceptions;
 import com.masai.repository.AdminDao;
+import com.masai.repository.CabDao;
 import com.masai.repository.CustomerDao;
 
 
 @Service
 public class AdminServiceImp implements AdminService {
 	@Autowired
-	private AdminDao aDao;
+	private AdminDao adminDao;
 
 	@Autowired
-	private CustomerDao cDao;
+	private CustomerDao customerDao;
+	
+	@Autowired 
+	private DriverService driverDao;
+	
+	@Autowired
+	private CabDao cabDao;
+	
+	@Autowired
+	private TripBookingDao tripDao;
 
 	@Override
 	public Admin saveAdmin(Admin admin) throws AdminExceptions {
-		return aDao.save(admin);
+		return adminDao.save(admin);
 	}
 
-	
+	@Override
 	public Admin update(Admin admin) throws AdminExceptions {
-		Optional<Admin> opt = aDao.findById(admin.getUserId());
+		Optional<Admin> opt = adminDao.findById(admin.getUserId());
 		if (opt.isPresent()) {
-//			Admin existAdmin = opt.get();
-			return aDao.save(admin);
+			//Admin existAdmin = opt.get();
+			return adminDao.save(admin);
 		}
 		throw new AdminExceptions("Invalid Id");
 	}
 
 	@Override
 	public Admin delete(Integer id) throws AdminExceptions {
-		Admin existingAdmin = aDao.findById(id).orElseThrow(() -> new AdminExceptions("Invalid Id"));
-		aDao.delete(existingAdmin);
+		Admin existingAdmin = adminDao.findById(id).orElseThrow(() -> new AdminExceptions("Invalid Id"));
+		adminDao.delete(existingAdmin);
 
 		return existingAdmin;
 	}
 
-	@Override
+	@Override //all trips detail of customer
 	public List<TripBooking> getAllTrips(Integer customerid) throws AdminExceptions {
 		//customer exception
-		cDao.
+		Optional<Customer> opt = customerDao.findById(customerid);
+		if(opt.isPresent()) {
+			List<TripBooking> trips = 
+		
+		}
+		return null;
 	}
 
 	@Override
