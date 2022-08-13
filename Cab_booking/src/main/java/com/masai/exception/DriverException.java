@@ -1,3 +1,4 @@
+
 package com.masai.exception;
 
 public class DriverException extends RuntimeException {
