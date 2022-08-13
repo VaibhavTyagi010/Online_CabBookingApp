@@ -41,7 +41,7 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 	public Driver updateDriver(Driver driver) throws DriverException{
-		Optional<Driver> opt= dDao.findById(driver.getId());
+		Optional<Driver> opt= dDao.findById(driver.getUserId());
 		if(opt.isPresent())
 			return dDao.save(driver);
 		else
@@ -50,7 +50,7 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 	public Driver deleteDriver(Driver driver) throws DriverException{
-		Optional<Driver> opt=dDao.findById(driver.getId());
+		Optional<Driver> opt=dDao.findById(driver.getUserId());
 		if(opt.isPresent()) {
 			dDao.delete(driver);
 			return driver;
