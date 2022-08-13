@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -26,7 +27,7 @@ public class Driver extends Abstractuser {
 @GeneratedValue(strategy=GenerationType.AUTO)
 @NotNull
 @Min(value=1, message="id should be more than 1")
-private Integer id;
+@PrimaryKeyJoinColumn(name="driverID")
 @Min(value=1, message="id should be more than 1")
 private Integer licenseNo;
 @Min(value=1, message="id should be more than 1")
