@@ -1,8 +1,6 @@
 package com.masai.entity;
 
 
-
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,19 +11,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.validation.constraints.Email;
+import lombok.ToString;
 
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@Data 
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Abstractuser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,14 +34,15 @@ public abstract class Abstractuser {
 	@Size(min = 4, max = 20, message = "{PasswordRange}")
 	@NotNull(message = "{notNull}")
 	private String Password;
-	
-	@Size(min = 10, message = "{MobileRange}")
-	private Long Mobile;
+
 	
 	private Address address;
 	
-	@Email
+	@javax.validation.constraints.Email
 	@NotNull(message = "{notNull}")
 	private String Email;
+
+    //@Size(min = 10, max=14,message = "{Mobile Range}")
+    private Long Mobile;
 
 }
