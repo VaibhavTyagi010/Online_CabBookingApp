@@ -17,7 +17,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,7 +31,7 @@ public class Driver extends Abstractuser {
 @PrimaryKeyJoinColumn(name="driverID")
 @Min(value=1, message="id should be more than 1")
 
-private Integer licenseNo;
+private Double licenseNo;
 @Min(value=1, message="id should be more than 1")
 private Integer rating;
 private Boolean available;

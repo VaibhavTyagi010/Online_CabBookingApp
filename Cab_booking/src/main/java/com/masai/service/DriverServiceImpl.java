@@ -42,8 +42,15 @@ public class DriverServiceImpl implements DriverService {
 	@Override
 	public Driver updateDriver(Driver driver) throws DriverException{
 		Optional<Driver> opt= dDao.findById(driver.getUserId());
-		if(opt.isPresent())
+		if(opt.isPresent()) {
+			Cab cab= driver.getCab();
+			Optional<Cab> opt2=cDao.findById(cab.getCabId());
+			if(!opt2.isPresent())
+			cDao.save(cab);
+			
 			return dDao.save(driver);
+		}
+			
 		else
 			throw new DriverException("No Driver found ");
 	}
