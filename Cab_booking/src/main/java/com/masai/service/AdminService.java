@@ -1,15 +1,17 @@
 package com.masai.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.masai.entity.Admin;
+import com.masai.entity.Cab;
 import com.masai.entity.TripBooking;
 import com.masai.exception.AdminExceptions;
 
 public interface AdminService {
 
 
-	/*public Admin saveAdmin(Admin admin) throws InvalidDetails;
+	public Admin saveAdmin(Admin admin) throws InvalidDetails;
 
 	
 	public Admin saveAdmin(Admin admin) throws AdminExceptions;
@@ -20,14 +22,17 @@ public interface AdminService {
 	
 	public List<TripBooking> getAllTrips(Integer customerid) throws AdminExceptions;
 	
-	public List<TripBooking> getTripsCabwise();
+	public List<TripBooking> getTripsCabwise(Cab cab);
 	
-	public List<TripBooking> getTripsCustomerwise();
+	public List<TripBooking> getTripsCustomerwise(Integer customerid);
+	
+	public List<TripBooking> getTripsDatewise(LocalDate date) throws AdminExceptions;
+	
+	public List<TripBooking> getTripsDatewiseAndCustomer(Integer customerId,LocalDate date) throws AdminExceptions;
 	
 
 
-	public List<TripBooking> getTripsDatewise();*/
-
+	public List<TripBooking> getTripsDatewise();
 
 	
 }

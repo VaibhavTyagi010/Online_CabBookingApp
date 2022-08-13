@@ -17,45 +17,43 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.ToString;
 
-@Entity
+//@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class TripBooking {
-	
-	   @Id
-	   @GeneratedValue(strategy = GenerationType.AUTO)
-	   @EqualsAndHashCode.Include
-	   private Integer TripBookingId;
-	   @NonNull
-	   private Integer CustomerId; 
-	   @ManyToOne
-	   @NotNull(message = "{notNull}")
-	   private Driver driver;
-	  
-	   @NotNull(message = "{From Location notNull}")
-	   private String From_location;
-	   
-	   @NotNull(message = "{To Loccation notNull}")
-	   private String To_location;
-	   
-	   
-	    @FutureOrPresent(message = "{futOrPres}")
-	    @NotNull(message = "{notNull}")
-	    @DateTimeFormat(pattern = "yyyy-MM-dd")
-       private LocalDate Fromdate_time;
-	    
-	    
-	    @FutureOrPresent(message = "{futOrPres}")
-	    @NotNull(message = "{notNull}")
-	    @DateTimeFormat(pattern = "yyyy-MM-dd")
-       private LocalDate Todate_time;
-	   
-       private Integer km;
-	   @NonNull
-       private Boolean Status;
-       private Long  Totalamount;
-       private Boolean Payment;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@EqualsAndHashCode.Include
+	private Integer TripBookingId;
+	@NonNull
+	private Integer CustomerId;
+	@ManyToOne
+	@NotNull(message = "{notNull}")
+	private Driver driver;
+
+	@NotNull(message = "{From Location notNull}")
+	private String From_location;
+
+	@NotNull(message = "{To Loccation notNull}")
+	private String To_location;
+
+	@FutureOrPresent(message = "{futOrPres}")
+	@NotNull(message = "{notNull}")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate Fromdate_time;
+
+	@FutureOrPresent(message = "{futOrPres}")
+	@NotNull(message = "{notNull}")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate Todate_time;
+
+	private Integer km;
+	@NonNull
+	private Boolean Status;
+	private Long Totalamount;
+	private Boolean Payment;
 }

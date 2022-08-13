@@ -16,18 +16,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class Driver extends Abstractuser {
-@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
+
+
+
 @NotNull
 @Min(value=1, message="id should be more than 1")
 private Integer id;
 @Min(value=1, message="id should be more than 1")
+
 private Integer licenseNo;
 @Min(value=1, message="id should be more than 1")
 private Integer rating;
