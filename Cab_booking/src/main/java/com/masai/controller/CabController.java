@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masai.entity.Admin;
 import com.masai.entity.Cab;
 import com.masai.service.CabService;
 
 @RestController
 public class CabController {
-
+	
 	private CabService cService;
 	
 	@PostMapping("/cabs")
