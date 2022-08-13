@@ -50,8 +50,7 @@ public class Abstractuser {
 	private Long Mobile;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="eid")
-
+	@JoinColumn(name="pincode")
 	private Address address;
 	
 	@Email

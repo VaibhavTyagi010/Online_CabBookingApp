@@ -10,11 +10,14 @@ import org.springframework.stereotype.Service;
 import com.masai.entity.Admin;
 import com.masai.entity.Cab;
 import com.masai.entity.Customer;
+import com.masai.entity.Driver;
 import com.masai.entity.TripBooking;
 import com.masai.exception.AdminExceptions;
+import com.masai.exception.CabNotFoundException;
 import com.masai.repository.AdminDao;
 import com.masai.repository.CabDao;
 import com.masai.repository.CustomerDao;
+import com.masai.repository.TripBookingDao;
 
 
 @Service
@@ -62,16 +65,18 @@ public class AdminServiceImp implements AdminService {
 		//customer exception
 		Optional<Customer> opt = customerDao.findById(customerid);
 		if(opt.isPresent()) {
-			List<TripBooking> trips = 
+			List<TripBooking> trips = tripDao.findAll();
+			return trips;
 		
 		}
-		return null;
+		throw new AdminExceptions("Invalid Id");
 	}
 
 	@Override
 	public List<TripBooking> getTripsCabwise(Cab cab) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Driver> opt = driverDao.findByCab(cab);
+		Cab ExistingCab =opt.orElseThrow(()-> new CabNotFoundException("Invalid Cab Detail"));
+		
 	}
 
 	@Override
