@@ -17,6 +17,7 @@ public class CabServiceImpl implements CabService {
 
 	@Autowired
 	private CabDao cDao;
+	
 
 	@Override
 	public Cab insertCab(Cab cab) {
@@ -35,6 +36,7 @@ public class CabServiceImpl implements CabService {
 			  Cab cab1 = opt.get();
 			  cDao.save(cab1);
 		  }
+		 
 			return cab;
 	}
 
