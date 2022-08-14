@@ -30,8 +30,8 @@ public class Driver extends Abstractuser {
 @NotNull
 @Min(value=1, message="id should be more than 1")
 @PrimaryKeyJoinColumn(name="driverID")
-@Min(value=1, message="id should be more than 1")
 
+@Min(value=1, message="id should be more than 1")
 private Double licenseNo;
 @Min(value=1, message="id should be more than 1")
 private Integer rating;
