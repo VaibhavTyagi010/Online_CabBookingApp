@@ -8,8 +8,7 @@ import com.masai.entity.Admin;
 
 @Repository
 public interface AdminDao extends JpaRepository<Admin, Integer> {
-	public Admin findByUserName(String userName);
+	public Admin findByUsername(String username);
 	
-//	@Query("from Course c where c.cname=?1")
-//	public Course getCourseByName(String cname);
+
 }
