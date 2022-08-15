@@ -76,12 +76,13 @@ public class AdminServiceImp implements AdminService {
 
 	@Override
 	public List<TripBooking> getTripsCabwise(Cab cab) {
-		Optional<Driver> opt = driverDao.findByCabId(cab.getCabId());
-		Driver ExistingDriver =opt.orElseThrow(()-> new CabNotFoundException("Invalid Cab Detail"));
-		List<TripBooking> trips = tripDao.findByDriverId(ExistingDriver.getUserId());
-		return trips;
+//		Optional<Driver> opt = driverDao.findByCabId(cab.getCabId());
+//		Driver ExistingDriver =opt.orElseThrow(()-> new CabNotFoundException("Invalid Cab Detail"));
+//		List<TripBooking> trips = tripDao.findByDriverId(ExistingDriver.getUserId());
+		return null;
 		
 	}
+
 
 	@Override
 	public List<TripBooking> getTripsCustomerwise() {
@@ -95,7 +96,7 @@ public class AdminServiceImp implements AdminService {
 
 	@Override
 	public List<TripBooking> getTripsDatewise() throws AdminExceptions {
-		List<TripBooking> list = tripDao.findByDateAsce();
+		List<TripBooking> list = tripDao.findByFromdate_timeAsce();
 		if(list.size() > 0)
 			return list;
 		else
@@ -104,7 +105,7 @@ public class AdminServiceImp implements AdminService {
 
 	@Override
 	public List<TripBooking> getTripsDatewiseAndCustomer(Integer customerId, LocalDate date) throws AdminExceptions {
-		List<TripBooking> list = tripDao.findByCustomerIdAndDate(customerId, date);
+		List<TripBooking> list = tripDao.findByCustomerIdAndFromdate_time(customerId, date);
 		if(list.size() > 0)
 			return list;
 		else

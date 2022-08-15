@@ -2,6 +2,7 @@ package com.masai.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.entity.Admin;
@@ -19,50 +21,38 @@ import com.masai.service.CabService;
 @RestController
 public class CabController {
 	
+	@Autowired
 	private CabService cService;
 	
-	@PostMapping("/cabs")
-	public Cab insertCabHandler(@RequestBody Cab cab)
-	{
-		return cService.insertCab(cab);
-		
-	}
-	
-	
-	@DeleteMapping("/cabs/{cabId}")
-	public Cab deleteHandler(@PathVariable int cabId)
-	{
-		
-	   return	cService.deleteCab(cabId);
-	
-		
-	}
-	
 	@PutMapping("/cabs")
-    public ResponseEntity<Cab> updateCabHandler(@RequestBody Cab cab)
+    public ResponseEntity<Cab> updateCabHandler(@RequestParam Integer id,
+									@RequestParam String type,
+									@RequestParam Integer rate)
     {
 		
-		Cab updatedCab = cService.updateCab(cab);
+		Cab updatedCab = cService.updateCab(id,type,rate);
 		return new ResponseEntity<Cab>(updatedCab,HttpStatus.ACCEPTED);
 		
     	
+		
     }
 	
-	@GetMapping("/cabs/{cabId}")
-	public ResponseEntity<List<Cab>> viewCabsHandler(@RequestBody String carType)
+	@GetMapping("/cabs")
+	public ResponseEntity<List<String>> viewCabsHandler(@RequestBody String carType)
 	{
 		
-		List<Cab> cabs = cService.viewCabsOfType(carType);
+		List<String> cabs = cService.viewCabsOfType();
 		
-        return new ResponseEntity<List<Cab>>(cabs,HttpStatus.OK);
+        return new ResponseEntity<List<String>>(cabs,HttpStatus.OK);
 		
 	}
-	
-     public int countCabsOfType(@PathVariable String carType)
+	@GetMapping("/cabsCount")
+     public String countCabsOfType()
      {
-    	return cService.countCabsOfType(carType); 
+    	int countCab = cService.countCabsOfType();
+    	
+    	return "Number of Cabs Abvailable " + countCab;
      }
-	
 	
 	
 }
