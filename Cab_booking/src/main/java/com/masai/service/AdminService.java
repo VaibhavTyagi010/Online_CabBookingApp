@@ -24,7 +24,7 @@ public interface AdminService {
 	
 	public List<TripBooking> getTripsCustomerwise();
 	
-	public List<TripBooking> getTripsDatewise(LocalDate date) throws AdminExceptions;
+	public List<TripBooking> getTripsDatewise() throws AdminExceptions;
 	
 	public List<TripBooking> getTripsDatewiseAndCustomer(Integer customerId,LocalDate date) throws AdminExceptions;
 	
