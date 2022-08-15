@@ -22,7 +22,7 @@ public interface AdminService {
 	
 	public List<TripBooking> getTripsCabwise(Cab cab);
 	
-	public List<TripBooking> getTripsCustomerwise(Integer customerid);
+	public List<TripBooking> getTripsCustomerwise();
 	
 	public List<TripBooking> getTripsDatewise(LocalDate date) throws AdminExceptions;
 	

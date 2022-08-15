@@ -74,15 +74,19 @@ public class AdminServiceImp implements AdminService {
 
 	@Override
 	public List<TripBooking> getTripsCabwise(Cab cab) {
-		Optional<Driver> opt = driverDao.findByCab(cab);
-		Cab ExistingCab =opt.orElseThrow(()-> new CabNotFoundException("Invalid Cab Detail"));
+		Optional<Driver> opt = driverDao.findByCabId(cab.getCabId());
+		Driver ExistingDriver =opt.orElseThrow(()-> new CabNotFoundException("Invalid Cab Detail"));
+		List<TripBooking> trips = tripDao.findAllByDriverId(ExistingDriver.getUserId());
+		return trips;
 		
 	}
 
 	@Override
 	public List<TripBooking> getTripsCustomerwise(Integer customerid) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Customer> opt = customerDao.findById(customerid);
+		Customer ExistingCus =opt.orElseThrow(()-> new AdminExceptions("Invalid customer Id"));
+		return tripDao.findAllByCustomerId(customerid);
+		 
 	}
 
 	@Override
@@ -97,10 +101,5 @@ public class AdminServiceImp implements AdminService {
 		return null;
 	}
 
-	@Override
-	public List<TripBooking> getTripsDatewise() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
