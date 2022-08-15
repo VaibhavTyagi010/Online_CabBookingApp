@@ -10,11 +10,10 @@ import com.masai.exception.InvalidId;
 
 public interface CabService {
 
-	public Cab insertCab(Cab cab);
-	public Cab updateCab(Cab cab) throws CabNotFoundException;
-	public Cab deleteCab(int cabId) throws InvalidId;
-	public List<Cab> viewCabsOfType(String carType) throws CabNotFoundException;
-	public int countCabsOfType(String carType) throws CabNotFoundException;
+public Cab updateCab(Integer id,String type, Integer rate) throws CabNotFoundException;
+	
+	public List<String> viewCabsOfType() throws CabNotFoundException;
+	public int countCabsOfType() throws CabNotFoundException;
 	
 }
 
