@@ -82,13 +82,13 @@ public class AdminServiceImp implements AdminService {
 		
 	}
 
-	@Override
-	public List<TripBooking> getTripsCustomerwise(Integer customerid) {
-		Optional<Customer> opt = customerDao.findById(customerid);
-		Customer ExistingCus =opt.orElseThrow(()-> new AdminExceptions("Invalid customer Id"));
-		return tripDao.findAllByCustomerId(customerid);
-		 
-	}
+//	@Override
+//	public List<TripBooking> getTripsCustomerwise(Integer customerid) {
+//		Optional<Customer> opt = customerDao.findById(customerid);
+//		Customer ExistingCus =opt.orElseThrow(()-> new AdminExceptions("Invalid customer Id"));
+//		return tripDao.findAllByCustomerId(customerid);
+//		 
+//	}
 
 	@Override
 	public List<TripBooking> getTripsCustomerwise() {
