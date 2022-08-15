@@ -31,12 +31,12 @@ public class Driver extends Abstractuser {
 @PrimaryKeyJoinColumn(name="driverID")
 
 @Min(value=1, message="id should be more than 1")
-private Double licenseNo;
+private Integer licenseNo;
 @Min(value=1, message="id should be more than 1")
-private Integer rating;
+private Double rating;
 private Boolean available;
 
-@OneToOne(cascade= CascadeType.ALL)
+@OneToOne(cascade= CascadeType.ALL, mappedBy="driver")
 @JoinColumn(name="cabId")
 private Cab cab;
 
