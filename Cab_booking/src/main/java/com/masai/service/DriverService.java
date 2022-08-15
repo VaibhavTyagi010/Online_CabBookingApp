@@ -9,7 +9,7 @@ import com.masai.exception.InvalidId;
 public interface DriverService {
 public Driver insertDriver(Driver driver);
 public Driver viewDriverById(Integer id) throws InvalidId;
-public Driver updateDriver(Driver driver)throws DriverNotFoundException;
+public Driver updateDriver(Integer id,Integer license, Boolean available)throws DriverNotFoundException;
 public Driver deleteDriverById(Integer id)throws DriverNotFoundException;
 public List<Driver> viewBestDriver()throws DriverNotFoundException;
 }
