@@ -42,6 +42,7 @@ public class DriverServiceImpl implements DriverService {
 	public Driver updateDriver(Integer id,Integer license, Boolean available) throws DriverNotFoundException{
 		Optional<Driver> opt= dDao.findById(id);
 		if(opt.isPresent()) {
+
 			Driver fDriver=opt.get();
 			fDriver.setLicenseNo(license);
 			fDriver.setAvailable(available);
@@ -49,6 +50,7 @@ public class DriverServiceImpl implements DriverService {
 			fCab.setDriver(fDriver);
 			cDao.save(fCab);
 			return dDao.save(fDriver);
+
 		}
 			
 		else
@@ -56,8 +58,10 @@ public class DriverServiceImpl implements DriverService {
 	}
 
 	@Override
+
 	public Driver deleteDriverById(Integer id) throws DriverNotFoundException{
 		Optional<Driver> opt=dDao.findById(id);
+
 		if(opt.isPresent()) {
 			cDao.delete(opt.get().getCab());
 			dDao.delete(opt.get());
