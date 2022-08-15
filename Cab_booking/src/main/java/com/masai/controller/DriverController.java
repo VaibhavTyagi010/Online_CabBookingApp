@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.entity.Driver;
 import com.masai.service.DriverService;
 
-@Controller
+@RestController
 public class DriverController {
 @Autowired
 private DriverService dService;
@@ -38,9 +39,9 @@ public String updateDriver(@Valid @RequestBody Driver driver) {
 	Driver updateddriver=dService.updateDriver(driver);
 	return "Driver updated "+updateddriver;
 }
-@DeleteMapping("/drivers")
-public String deleteDriver(@Valid @RequestBody Driver driver) {
-	Driver deletedDriver=dService.deleteDriver(driver);
+@DeleteMapping("/drivers/{id}")
+public String deleteDriverById(@PathVariable("id") Integer id) {
+	Driver deletedDriver=dService.deleteDriverById(id);
 	return "Driver deleted "+deletedDriver;
 }
 @GetMapping("/topDrivers")

@@ -22,10 +22,15 @@ public class GlobalExceptionHandler {
 	}
 	
 	
-	@ExceptionHandler(DriverException.class)
-	public ResponseEntity<MyErrorDetails> myExpHandler4(DriverException ie, WebRequest wr){
+	@ExceptionHandler(DriverNotFoundException.class)
+	public ResponseEntity<MyErrorDetails> myExpHandler4(DriverNotFoundException ie, WebRequest wr){
 		MyErrorDetails err= new MyErrorDetails(LocalDateTime.now(),ie.getMessage(),wr.getDescription(false));
 		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.BAD_REQUEST);
+	}
+	@ExceptionHandler(AdminExceptions.class)
+	public ResponseEntity<MyErrorDetails> myExpHandler4(AdminExceptions ae, WebRequest wr){
+		MyErrorDetails err= new MyErrorDetails(LocalDateTime.now(),ae.getMessage(),wr.getDescription(false));
+		return new ResponseEntity<MyErrorDetails>(err,HttpStatus.CONFLICT);
 	}
 	
 	

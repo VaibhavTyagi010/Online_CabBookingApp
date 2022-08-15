@@ -1,5 +1,6 @@
 package com.masai.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,12 +14,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 public class Address {
+	
 	private String city;
 
-	private State state;
-
 	private String state;
-
+	@Id
 	private String pincode;
 }

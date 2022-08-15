@@ -1,30 +1,41 @@
 package com.masai.entity;
 
 
+
+import javax.annotation.Generated;
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
+
+import javax.validation.constraints.Email;
 
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Data 
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Abstractuser {
-	@Id
+public class Abstractuser {
+	
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
 	private Integer userId;
 	
 	@Size(min = 3, max = 255, message = "{nameRange}")
@@ -34,15 +45,16 @@ public abstract class Abstractuser {
 	@Size(min = 4, max = 20, message = "{PasswordRange}")
 	@NotNull(message = "{notNull}")
 	private String Password;
-
 	
+	@Size(min = 10, message = "{MobileRange}")
+	private Long Mobile;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="pincode")
 	private Address address;
 	
-	@javax.validation.constraints.Email
+	@Email
 	@NotNull(message = "{notNull}")
 	private String Email;
-
-    //@Size(min = 10, max=14,message = "{Mobile Range}")
-    private Long Mobile;
 
 }

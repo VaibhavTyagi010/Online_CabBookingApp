@@ -19,7 +19,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+
 @PrimaryKeyJoinColumn(name="driverId")
+
 public class Driver extends Abstractuser {
 
 
