@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.entity.Cab;
+import com.masai.entity.Driver;
 import com.masai.exception.CabNotFoundException;
 import com.masai.exception.InvalidId;
 import com.masai.repository.CabDao;
+import com.masai.repository.DriverDao;
 
 import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
 
@@ -17,50 +19,63 @@ public class CabServiceImpl implements CabService {
 
 	@Autowired
 	private CabDao cDao;
+	
+	@Autowired
+	private DriverDao dDao;
+
+
 
 	@Override
-	public Cab insertCab(Cab cab) {
+	public Cab updateCab(Integer id,String type, Integer rate) throws CabNotFoundException {
 		// TODO Auto-generated method stub
-		Cab insertCab = cDao.save(cab);
-		return insertCab;
-	}
-
-	@Override
-	public Cab updateCab(Cab cab) throws CabNotFoundException {
-		// TODO Auto-generated method stub
-		java.util.Optional<Cab> opt = cDao.findById(cab.getCabId());
-		
+		java.util.Optional<Cab> opt = cDao.findById(id);
+	
 		  if(opt.isPresent())
 		  {
+			  Cab fCab=opt.get();
+				fCab.setCarType(type);
+				fCab.setRatePerKm(rate);
+				Driver fDriver= fCab.getDriver();
+				fDriver.setCab(fCab);;
+				dDao.save(fDriver);
+				return cDao.save(fCab);
+			  
+			  
+			  /*
+			  //Driver driver = dDao.getDriverByCabId(cab.getCabId());
+		
 			  Cab cab1 = opt.get();
-			  cDao.save(cab1);
+			  Driver cabDriver=cab1.getDriver();
+			  cabDriver.setCab(cab1);
+			  dDao.save(cabDriver);
+			 return cDao.save(cab1);*/
+			  
+			  
+		  }else
+		  {
+			  throw new CabNotFoundException("Cab Not Found");
 		  }
-			return cab;
+		 
+			
 	}
 
-	@Override
-	public Cab deleteCab(int cabId) throws InvalidId {
-		// TODO Auto-generated method stub
-		Cab cab = cDao.findById(cabId).orElseThrow();
-		cDao.delete(cab);
-		return cab;
-	}
+	
 
 	@Override
-	public List<Cab> viewCabsOfType(String carType) throws CabNotFoundException {
+	public List<String> viewCabsOfType() throws CabNotFoundException {
 		// TODO Auto-generated method stub
-		List<Cab> cabs = cDao.findAll();
+		List<String> cabs = cDao.viewCarType();
 		return cabs;
 	}
 
 	@Override
-	public int countCabsOfType(String carType) throws CabNotFoundException {
+	public int countCabsOfType() throws CabNotFoundException {
 		// TODO Auto-generated method stub
 		List<Cab> listcab = cDao.findAll();
 		return listcab.size();
 	}
-
-
+	
+	
 
 
 

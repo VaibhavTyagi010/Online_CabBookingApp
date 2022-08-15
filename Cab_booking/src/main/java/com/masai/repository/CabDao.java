@@ -11,6 +11,7 @@ import com.masai.entity.Cab;
 @Repository
 public interface CabDao extends JpaRepository<Cab, Integer> {
 	
-
+	@Query("select distinct carType from Cab")
+	public List<String> viewCarType();
 	
 }
