@@ -17,5 +17,4 @@ public interface CabDao extends JpaRepository<Cab, Integer> {
 	public List<String> viewCarType();
 
 
-	
 }

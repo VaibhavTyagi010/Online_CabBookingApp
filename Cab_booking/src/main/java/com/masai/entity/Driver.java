@@ -26,9 +26,6 @@ public class Driver extends Abstractuser {
 
 
 
-@NotNull
-@Min(value=1, message="id should be more than 1")
-@PrimaryKeyJoinColumn(name="driverID")
 
 @Min(value=1, message="id should be more than 1")
 private Integer licenseNo;
