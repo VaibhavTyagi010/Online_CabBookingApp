@@ -47,7 +47,7 @@ public class Abstractuser {
 	private String Password;
 	
 	@Size(min = 10, message = "{MobileRange}")
-	private Long Mobile;
+	private String Mobile;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="pincode")
