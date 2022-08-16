@@ -52,9 +52,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("trips/{cab}")
-	public ResponseEntity<List<TripBooking>> getTripsCabwise(@RequestBody Cab cab){
+	public ResponseEntity<List<TripBooking>> getTripsDriverwise(@RequestBody Cab cab){
 		
-		List<TripBooking> trips= adminService.getTripsCabwise(cab);
+		List<TripBooking> trips= adminService.getTripsDriverwise();
 		return new ResponseEntity<List<TripBooking>>(trips,HttpStatus.OK);
 	}
 	

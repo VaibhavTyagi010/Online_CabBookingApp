@@ -19,6 +19,7 @@ public interface TripDao extends JpaRepository<TripBooking,Integer> {
 	
 	@Query("from TripBooking where CustomerId=:customerId AND Fromdate_time=:date")
 	public List<TripBooking> findByCustomerIdAndFromdate_time(Integer customerId, LocalDate date);
-
-	//	public List<TripBooking> findByDriverId(Integer customerId);
+	
+	@Query("from TripBooking Group by DriverId")
+	public List<TripBooking> findByDriverAscs();
 }
