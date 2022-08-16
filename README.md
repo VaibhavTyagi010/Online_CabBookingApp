@@ -13,7 +13,20 @@ Admin can set/update prices and charges of the taxi rides. Admin can manage the 
 On the other hand, users can register. Users can search and view the taxis available. Users can search taxis by entering the location.
 
 Admin can maintain a database of drivers. Drivers have to register on the portal. Drivers will be able to see the booking done by users and details of users like name, source, and destination location.
-customer
+
+
+
+![image](https://user-images.githubusercontent.com/101566236/184872755-b0ed8c16-4055-4b31-8f01-be2bdcfc4e71.png)
+
+
+
+
+
+
+
+customer==> 
+
+
 Can Log in/Log out of the system.
 Can Manage “My profile”.
 Can search for cab.
