@@ -28,8 +28,8 @@ private Integer cabId;
 private String carType;
 private Integer ratePerKm;
 
-@OneToOne(optional=false, cascade=CascadeType.ALL)
-@JoinColumn(name="userId")
+@OneToOne(cascade=CascadeType.ALL,mappedBy="cab",orphanRemoval = true)
 @JsonIgnore
+
 private Driver driver;
 }

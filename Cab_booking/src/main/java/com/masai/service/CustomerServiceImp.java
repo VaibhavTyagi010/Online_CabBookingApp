@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.masai.repository.AddressDao;
 import com.masai.repository.CustomerDao;
+import com.masai.entity.Address;
 import com.masai.entity.Customer;
 import com.masai.exception.InvalidId;
 import com.masai.exception.Nullexception;
@@ -15,6 +18,8 @@ public class CustomerServiceImp implements CustomerService {
  
 	@Autowired
 	private CustomerDao cdao;
+    @Autowired
+    private AddressDao Adao;
 	
 	
 	@Override
@@ -34,17 +39,21 @@ public class CustomerServiceImp implements CustomerService {
 		
 	}
 	@Override
-	public Customer updateCustomer(Customer customer) throws InvalidId {
-		Integer id=customer.getUserId();
-		Customer c1=cdao.getById(id);
+	public Customer updateCustomer(Customer customer, Integer id) throws InvalidId {
 		
-		System.out.println(c1.getUserId());
+		Customer c1=cdao.findById(id).orElseThrow(() -> new InvalidId("Customer with ID "+id+" does not exit.."));
+		
+	Integer aid=	c1.getAddress().getId();
+		
 		c1.setAddress(customer.getAddress());
 		c1.setEmail(customer.getEmail());
 		c1.setMobile(customer.getMobile());
 		c1.setPassword(customer.getPassword());
 		c1.setUsername(customer.getUsername());
-            cdao.save(c1);		
+		Address a1=Adao.findById(aid).orElseThrow(() -> new InvalidId("Address with ID "+aid+" does not exit.."));
+		Adao.delete(a1);
+		Adao.save(customer.getAddress());
+		
 		return c1;
 	}
 
@@ -52,9 +61,8 @@ public class CustomerServiceImp implements CustomerService {
 	@Override
 	public String deleteCustomer(Integer id) throws InvalidId {
 		// TODO Auto-generated method stub
-		
-		
 		Customer ct=cdao.findById(id).orElseThrow(() -> new InvalidId("Customer with ID "+id+" does not exit.."));
+		Adao.delete(ct.getAddress());
 		cdao.delete(ct);
 		
 		return "delete...";
