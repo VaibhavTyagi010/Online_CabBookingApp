@@ -43,11 +43,11 @@ public class CustomerController {
 	{	System.out.println(customer);
 		return service.saveCustomer(customer);
 	}
-	@PutMapping("/update")
-	public Customer updateStudent(@Valid @RequestBody Customer customer)
+	@PutMapping("/update/{id}")
+	public Customer updateStudent(@Valid @RequestBody Customer customer,@PathVariable("id")Integer id )
 	{
 		
-		return service.updateCustomer(customer);
+		return service.updateCustomer(customer,id);
 	}
     @DeleteMapping("/delete/{id}")
 	public String delete(@PathVariable("id")Integer id) {

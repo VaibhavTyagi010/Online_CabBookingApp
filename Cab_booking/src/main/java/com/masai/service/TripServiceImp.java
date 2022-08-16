@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.masai.entity.Driver;
 import com.masai.entity.TripBooking;
+import com.masai.exception.DriverNotFoundException;
 import com.masai.exception.InvalidId;
 import com.masai.repository.CustomerDao;
 import com.masai.repository.DriverDao;
@@ -27,8 +28,12 @@ public class TripServiceImp implements TripService {
 		
 		cdao.findById(tb.getCustomerId()).orElseThrow(() -> new InvalidId("Customer with ID "+tb.getCustomerId()+" does not exit.."));
 		List<Driver> drivers= ddao.viewBestDriver();
+		if(drivers.size()==0)
+		{
+			throw new DriverNotFoundException("Sorry No driver Available just now...");
+		}
 		drivers.get(0).setAvailable(false);
-		ddao.save(drivers.get(0));
+		
 		 Integer km = tb.getKm();
 	     Integer price=drivers.get(0).getCab().getRatePerKm();
 	     tb.setTotalamount(km*price);
@@ -40,13 +45,13 @@ public class TripServiceImp implements TripService {
 	@Override
 	public List<TripBooking> alltrip() {
 		
-		return trip.findAll();
+		return trip.findAll(); 
 	}
 
 	@Override
-	public TripBooking updateTrip(TripBooking tb) throws InvalidId {
+	public TripBooking updateTrip(TripBooking tb,Integer id) throws InvalidId {
 		
-		Integer id=tb.getTripBookingId();
+	
 		TripBooking c1=trip.getById(id);
 		
 		c1.setCustomerId(tb.getCustomerId());
@@ -62,11 +67,11 @@ public class TripServiceImp implements TripService {
 
 	@Override
 	public String deletetrip(Integer id) throws InvalidId {
-		
-		
 		TripBooking ct=trip.findById(id).orElseThrow(() -> new InvalidId("TripBooking with ID "+id+" does not exit.."));
-		trip.delete(ct);
 		
+		ct.setDriver(null);
+		trip.delete(ct);
+
 		return "delete...";
 	}
 
@@ -79,7 +84,7 @@ public class TripServiceImp implements TripService {
 		Integer driverid=ct.getDriver().getUserId();
 		Driver dt=ddao.findById(driverid).orElseThrow(() -> new InvalidId("Drive with ID "+driverid+" does not exit.."));
 	 
-		dt.setAvailable(false);
+		dt.setAvailable(true);
 		ddao.save(dt);
 		ct.setPayment(true);
 	     

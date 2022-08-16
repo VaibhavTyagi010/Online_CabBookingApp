@@ -44,8 +44,7 @@ public ResponseEntity<Driver> updateDriver(@RequestParam Integer id,
 }
 @DeleteMapping("/drivers/{id}")
 public String deleteDriverById(@PathVariable("id") Integer id) {
-	Driver deletedDriver=dService.deleteDriverById(id);
-	return "Driver deleted "+deletedDriver;
+	return dService.deleteDriverById(id);
 }
 @GetMapping("/topDrivers")
 public ResponseEntity<List<Driver>> viewBestDrivers(){
