@@ -41,6 +41,7 @@ public class AdminServiceImp implements AdminService {
 
 	@Override
 	public Admin saveAdmin(Admin admin) throws AdminExceptions {
+		System.out.println(admin);
 		return adminDao.save(admin);
 	}
 
