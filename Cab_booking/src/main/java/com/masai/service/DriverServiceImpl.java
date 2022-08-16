@@ -25,8 +25,7 @@ public class DriverServiceImpl implements DriverService {
 	public Driver insertDriver(Driver driver) {
 		Cab cab= driver.getCab();
 		cDao.save(cab);
-		Driver savedDriver= dDao.save(driver);
-		return savedDriver;
+		return dDao.save(driver);
 	}
 
 	@Override
@@ -40,15 +39,18 @@ public class DriverServiceImpl implements DriverService {
 	}
 
 	@Override
-	public Driver updateDriver(Driver driver) throws DriverNotFoundException{
-		Optional<Driver> opt= dDao.findById(driver.getUserId());
+	public Driver updateDriver(Integer id,Integer license, Boolean available) throws DriverNotFoundException{
+		Optional<Driver> opt= dDao.findById(id);
 		if(opt.isPresent()) {
-			Cab cab= driver.getCab();
-			Optional<Cab> opt2=cDao.findById(cab.getCabId());
-			if(!opt2.isPresent())
-			cDao.save(cab);
-			
-			return dDao.save(driver);
+
+			Driver fDriver=opt.get();
+			fDriver.setLicenseNo(license);
+			fDriver.setAvailable(available);
+			Cab fCab= fDriver.getCab();
+			fCab.setDriver(fDriver);
+			cDao.save(fCab);
+			return dDao.save(fDriver);
+
 		}
 			
 		else
@@ -56,8 +58,10 @@ public class DriverServiceImpl implements DriverService {
 	}
 
 	@Override
+
 	public Driver deleteDriverById(Integer id) throws DriverNotFoundException{
 		Optional<Driver> opt=dDao.findById(id);
+
 		if(opt.isPresent()) {
 			cDao.delete(opt.get().getCab());
 			dDao.delete(opt.get());

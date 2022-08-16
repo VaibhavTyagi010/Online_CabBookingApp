@@ -3,9 +3,6 @@ package com.masai.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -22,26 +19,25 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@PrimaryKeyJoinColumn(name="adminId")
+
+@PrimaryKeyJoinColumn(name="driverId")
+
 public class Driver extends Abstractuser {
 
 
 
-@NotNull
-@Min(value=1, message="id should be more than 1")
-@PrimaryKeyJoinColumn(name="driverID")
 
 @Min(value=1, message="id should be more than 1")
-private Double licenseNo;
+private Integer licenseNo;
 @Min(value=1, message="id should be more than 1")
-private Integer rating;
+private Double rating;
 private Boolean available;
 
-@OneToOne(cascade= CascadeType.ALL)
+@OneToOne(cascade= CascadeType.ALL, mappedBy="driver")
 @JoinColumn(name="cabId")
 private Cab cab;
 
-@OneToOne(cascade=CascadeType.ALL)
-@JoinColumn(name="tripBookingId")
+@OneToOne(cascade = CascadeType.ALL,mappedBy = "driver")
 private TripBooking tripBooking;
+
 }

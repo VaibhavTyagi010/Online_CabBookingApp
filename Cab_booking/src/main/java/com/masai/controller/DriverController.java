@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.entity.Driver;
@@ -35,9 +36,11 @@ public ResponseEntity<Driver> viewDriverById(@PathVariable("id") Integer id){
 	return new ResponseEntity<Driver>(foundDriver,HttpStatus.ACCEPTED);
 }
 @PutMapping("/drivers")
-public String updateDriver(@Valid @RequestBody Driver driver) {
-	Driver updateddriver=dService.updateDriver(driver);
-	return "Driver updated "+updateddriver;
+public ResponseEntity<Driver> updateDriver(@RequestParam Integer id,
+							@RequestParam Integer lic,
+							@RequestParam Boolean avail) {
+	Driver driver=dService.updateDriver(id,lic,avail);
+	return new ResponseEntity<Driver>(driver,HttpStatus.ACCEPTED);
 }
 @DeleteMapping("/drivers/{id}")
 public String deleteDriverById(@PathVariable("id") Integer id) {

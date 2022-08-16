@@ -2,11 +2,16 @@ package com.masai.controller;
 
 
 
+import java.time.LocalDate;
+
 import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,57 +21,69 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.entity.Admin;
+import com.masai.entity.Cab;
 import com.masai.entity.TripBooking;
-import com.masai.service.AdminServiceImp;
+import com.masai.service.AdminService;
 @RestController
 public class AdminController {
+	
 	@Autowired
-	private AdminServiceImp adminService;
+	private AdminService adminService;
 	
 	@PostMapping("/admin")
-	public Admin insertAdmin(@RequestBody Admin admin) {
-		return adminService.saveAdmin(admin);
+	public ResponseEntity<Admin> insertAdmin(@RequestBody Admin admin) {
+		Admin savedAdmin = adminService.saveAdmin(admin);
+		return new ResponseEntity<Admin>(savedAdmin,HttpStatus.OK);
 	}
 	
 	
-	@PutMapping("/admin/{adminId}")
-	public String updateAdmin(@RequestBody Admin admin, @PathVariable("adminId") int adminId) {
-		return "admin updated "+admin; 
-		
-	}
 	
 	@DeleteMapping("/admin/{adminId}")
-	public String deleteMapping(@PathVariable("adminId") int adminId) {
-		return "admin deleted";
+	public ResponseEntity<Admin> deleteMapping(@PathVariable("adminId") Integer adminId) {
+		Admin returnAdmin = adminService.delete(adminId); 
+		return new ResponseEntity<Admin>(returnAdmin,HttpStatus.OK);
 	}
 	
 	@GetMapping("/trips/{customerId}")
-	public List<TripBooking> getAllTrips(@PathVariable("customerId") int customerId){
-		List<TripBooking> list = new ArrayList<>();
+	public ResponseEntity<List<TripBooking>>  getAllTrips(@PathVariable("customerId") Integer customerId){
+		
+		List<TripBooking> trips= adminService.getAllTrips(customerId);
+		return new ResponseEntity<List<TripBooking>>(trips,HttpStatus.OK);
+	}
+	
+	@GetMapping("trips/{cab}")
+	public ResponseEntity<List<TripBooking>> getTripsCabwise(@RequestBody Cab cab){
+		
+		List<TripBooking> trips= adminService.getTripsCabwise(cab);
+		return new ResponseEntity<List<TripBooking>>(trips,HttpStatus.OK);
+	}
+	
+	
+	@PutMapping("/admin")
+	public ResponseEntity<String> updateAdmin(@RequestBody Admin admin) {
+		Admin updatedAdmin = adminService.update(admin);
+		return new ResponseEntity<String>("admin updated "+updatedAdmin,HttpStatus.ACCEPTED); 
+	}
+	
+	
+	
+	
+	@GetMapping("/customertrips")
+	public List<TripBooking> getTripsCustomerwise(){
+		List<TripBooking> list = adminService.getTripsCustomerwise();
 		return list;
 	}
 	
-	@GetMapping("trips/{cabId}")
-	public List<TripBooking> getTripsCabwise(@PathVariable("cabId") int cabId){
-		List<TripBooking> list = new ArrayList<>();
+	@GetMapping("/datewisetrips")
+	public List<TripBooking> getTripsDatewise(){
+		List<TripBooking> list = adminService.getTripsDatewise();
 		return list;
 	}
 	
-	@GetMapping("trips/{customerId}")
-	public List<TripBooking> getTripsCustomerwise(@PathVariable("customerId") int customerId){
-		List<TripBooking> list = new ArrayList<>();
+	@GetMapping("trips/{customerId}/{date}")
+	public List<TripBooking> getTripsDatewiseAndCustomer(@PathVariable("customerId") Integer customerId, @PathVariable("date") LocalDate date){
+		List<TripBooking> list = adminService.getTripsDatewiseAndCustomer(customerId, date);
 		return list;
-	}
-	
-	@GetMapping("trips/{date}")
-	public List<TripBooking> getTripsDatewise(@PathVariable("date") LocalDateTime date){
-		List<TripBooking> list = new ArrayList<>();
-		return list;
-	}
-	
-	@GetMapping("trips/{customerId}/{fromDate}/{toDate}")
-	public List<TripBooking> getAllTripsForDays(@PathVariable("customerId") int customerId, @PathVariable("fromDate") LocalDateTime fromDate, @PathVariable("toDate") LocalDateTime toDate){
-		List<TripBooking> list = new ArrayList<>();
-		return list;
+
 	}
 }

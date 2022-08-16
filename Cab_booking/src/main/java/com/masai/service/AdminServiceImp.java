@@ -17,7 +17,9 @@ import com.masai.exception.CabNotFoundException;
 import com.masai.repository.AdminDao;
 import com.masai.repository.CabDao;
 import com.masai.repository.CustomerDao;
-import com.masai.repository.TripBookingDao;
+import com.masai.repository.DriverDao;
+
+import com.masai.repository.TripDao;
 
 
 @Service
@@ -29,16 +31,17 @@ public class AdminServiceImp implements AdminService {
 	private CustomerDao customerDao;
 	
 	@Autowired 
-	private DriverService driverDao;
+	private DriverDao driverDao;
 	
 	@Autowired
 	private CabDao cabDao;
 	
 	@Autowired
-	private TripBookingDao tripDao;
+	private TripDao tripDao;
 
 	@Override
 	public Admin saveAdmin(Admin admin) throws AdminExceptions {
+		System.out.println(admin);
 		return adminDao.save(admin);
 	}
 
@@ -74,33 +77,42 @@ public class AdminServiceImp implements AdminService {
 
 	@Override
 	public List<TripBooking> getTripsCabwise(Cab cab) {
-		Optional<Driver> opt = driverDao.findByCab(cab);
-		Cab ExistingCab =opt.orElseThrow(()-> new CabNotFoundException("Invalid Cab Detail"));
+
+//		Optional<Driver> opt = driverDao.findByCabId(cab.getCabId());
+//		Driver ExistingDriver =opt.orElseThrow(()-> new CabNotFoundException("Invalid Cab Detail"));
+//		List<TripBooking> trips = tripDao.findByDriverId(ExistingDriver.getUserId());
+		return null;
 		
 	}
 
+
 	@Override
-	public List<TripBooking> getTripsCustomerwise(Integer customerid) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TripBooking> getTripsCustomerwise() {
+		List<TripBooking> list = tripDao.findByCustomeridAsce();
+		if(list.size() > 0)
+			return list;
+		else
+			throw new AdminExceptions("No trips found");
+		 
 	}
 
 	@Override
-	public List<TripBooking> getTripsDatewise(LocalDate date) throws AdminExceptions {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TripBooking> getTripsDatewise() throws AdminExceptions {
+		List<TripBooking> list = tripDao.findByFromdate_timeAsce();
+		if(list.size() > 0)
+			return list;
+		else
+			throw new AdminExceptions("No trips found");
 	}
 
 	@Override
 	public List<TripBooking> getTripsDatewiseAndCustomer(Integer customerId, LocalDate date) throws AdminExceptions {
-		// TODO Auto-generated method stub
-		return null;
+		List<TripBooking> list = tripDao.findByCustomerIdAndFromdate_time(customerId, date);
+		if(list.size() > 0)
+			return list;
+		else
+			throw new AdminExceptions("No trips found for customer id "+customerId+" and date : "+date);
 	}
 
-	@Override
-	public List<TripBooking> getTripsDatewise() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

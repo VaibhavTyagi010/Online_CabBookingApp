@@ -8,5 +8,7 @@ import com.masai.entity.Admin;
 
 @Repository
 public interface AdminDao extends JpaRepository<Admin, Integer> {
+	
+	
 
 }
