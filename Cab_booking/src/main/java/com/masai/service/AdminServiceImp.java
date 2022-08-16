@@ -74,8 +74,9 @@ public class AdminServiceImp implements AdminService {
 
 	@Override
 	public List<TripBooking> getTripsCabwise(Cab cab) {
-		Optional<Driver> opt = driverDao.findByCab(cab);
-		Cab ExistingCab =opt.orElseThrow(()-> new CabNotFoundException("Invalid Cab Detail"));
+//		Optional<Driver> opt = driverDao.findByCab(cab);
+//		Cab ExistingCab =opt.orElseThrow(()-> new CabNotFoundException("Invalid Cab Detail"));
+		return null;
 	}
 
 	@Override

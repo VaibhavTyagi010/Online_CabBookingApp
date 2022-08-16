@@ -23,10 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Customer extends Abstractuser {
-	@PrimaryKeyJoinColumn
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private int costomerId;
+
 	@AssertTrue
 	private boolean journey_status;
 	
