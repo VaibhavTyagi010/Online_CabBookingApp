@@ -48,8 +48,10 @@ public abstract class Abstractuser implements Serializable {
 	@NotNull(message = "{notNull}")
 	private String Password;
 	
-//	@Size(min = 10, message = "{MobileRange}")
-	private Long Mobile;
+
+	@Size(min = 10, message = "{MobileRange}")
+	private String Mobile;
+
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="pincode")
