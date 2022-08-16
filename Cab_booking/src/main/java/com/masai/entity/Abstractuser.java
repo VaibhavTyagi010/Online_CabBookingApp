@@ -2,6 +2,8 @@ package com.masai.entity;
 
 
 
+import java.io.Serializable;
+
 import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
@@ -32,7 +34,7 @@ import javax.validation.constraints.Email;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Abstractuser {
+public abstract class Abstractuser implements Serializable {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
@@ -46,8 +48,10 @@ public class Abstractuser {
 	@NotNull(message = "{notNull}")
 	private String Password;
 	
+
 	@Size(min = 10, message = "{MobileRange}")
 	private String Mobile;
+
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="pincode")
