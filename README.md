@@ -16,9 +16,6 @@ Admin can maintain a database of drivers. Drivers have to register on the portal
 
 
 
-![image](https://user-images.githubusercontent.com/101566236/184872755-b0ed8c16-4055-4b31-8f01-be2bdcfc4e71.png)
-
-
 
 
 
