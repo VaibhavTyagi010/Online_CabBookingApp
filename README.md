@@ -24,11 +24,25 @@ Admin can maintain a database of drivers. Drivers have to register on the portal
 
 
 
-customer==> 
 
 
+
+
+admin=>
+Can Log in/Log out of the system.
+Admin can View/Edit/Delete taxis into the system.
+Admin can View/Confirm/Cancel booking done by the User.
+Can check payments done by User.
+Can check the availability of cabs and drivers.
+Can manage driver staff.
+Can change the charge.
+Can change password.
+Can manage “My Profiles”.
+
+customer=> 
 Can Log in/Log out of the system.
 Can Manage “My profile”.
 Can search for cab.
 Users can Book/Cancel cabs.
 Can change password.
+
