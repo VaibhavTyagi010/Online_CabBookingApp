@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.entity.Customer;
@@ -20,6 +21,7 @@ import com.masai.entity.TripBooking;
 import com.masai.service.TripService;
 
 @RestController
+@RequestMapping("/api")
 public class TripbookingController {
 	
 	@Autowired

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,7 @@ import com.masai.entity.Cab;
 import com.masai.service.CabService;
 
 @RestController
+@RequestMapping("/api")
 public class CabController {
 	
 	@Autowired
@@ -38,7 +40,7 @@ public class CabController {
     }
 	
 	@GetMapping("/cabs")
-	public ResponseEntity<List<String>> viewCabsHandler(@RequestBody String carType)
+	public ResponseEntity<List<String>> viewCabsHandler()
 	{
 		
 		List<String> cabs = cService.viewCabsOfType();
