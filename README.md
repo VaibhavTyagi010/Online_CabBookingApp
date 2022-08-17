@@ -17,30 +17,27 @@ Admin can maintain a database of drivers. Drivers have to register on the portal
 # Cab Booking Application ER diagram
 ![cab_booking_3](https://user-images.githubusercontent.com/68966858/185020617-92914a9c-b5e2-4b3b-aa36-dc6a26454cba.jpeg)
 
+# Functions of Admin, Cutomer, Driver
+## Through admin we can : 
+1. Can Log in/Log out of the system.<br>
+2. Admin can View/Edit/Delete taxis into the system.<br>
+3. Admin can View/Confirm/Cancel booking done by the User.<br>
+4. Can check payments done by User.<br>
+5. Can check the availability of cabs and drivers.<br>
+6. Can manage driver staff.<br>
+7. Can change the charge.<br>
+8. Can change password.<br>
 
+## Through Customer we can:
+1. Can Log in/Log out of the system.
+2. Can Manage “My profile”.<br>
+3. Can search for cab.<br>
+4. Users can Book/Cancel cabs.<br>
+5. Can change password.<br>
 
-
-
-
-
-
-
-
-admin=>
-Can Log in/Log out of the system.
-Admin can View/Edit/Delete taxis into the system.
-Admin can View/Confirm/Cancel booking done by the User.
-Can check payments done by User.
-Can check the availability of cabs and drivers.
-Can manage driver staff.
-Can change the charge.
-Can change password.
-Can manage “My Profiles”.
-
-customer=> 
-Can Log in/Log out of the system.
-Can Manage “My profile”.
-Can search for cab.
-Users can Book/Cancel cabs.
-Can change password.
-
+## Through Driver we can:
+1. Add a driver in the system.
+2. Update driver details.
+3. Delete a driver from the system.
+4. Get the list of all drivers.
+5. Get the list of all best available(rated>=4.5) drivers.
