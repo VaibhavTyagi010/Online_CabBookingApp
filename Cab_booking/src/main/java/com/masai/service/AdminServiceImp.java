@@ -13,7 +13,7 @@ import com.masai.entity.Customer;
 import com.masai.entity.Driver;
 import com.masai.entity.TripBooking;
 import com.masai.exception.AdminExceptions;
-import com.masai.exception.CabNotFoundException;
+import com.masai.exception.NotFoundException;
 import com.masai.repository.AdminDao;
 import com.masai.repository.CabDao;
 import com.masai.repository.CustomerDao;
@@ -76,12 +76,12 @@ public class AdminServiceImp implements AdminService {
 	}
 
 	@Override
-	public List<TripBooking> getTripsCabwise(Cab cab) {
 
-//		Optional<Driver> opt = driverDao.findByCabId(cab.getCabId());
-//		Driver ExistingDriver =opt.orElseThrow(()-> new CabNotFoundException("Invalid Cab Detail"));
-//		List<TripBooking> trips = tripDao.findByDriverId(ExistingDriver.getUserId());
-		return null;
+	public List<TripBooking> getTripsDriverwise() {
+		List<TripBooking> list = tripDao.findByDriverAscs();
+		System.out.println(list);
+		return list;
+
 		
 	}
 

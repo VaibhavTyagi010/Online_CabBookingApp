@@ -46,8 +46,10 @@ public abstract class Abstractuser implements Serializable {
 	private String Password;
 	
 
+
 	@Size(min = 10, message = "{MobileRange}")
 	private String Mobile;
+
 
 	
 	@OneToOne(cascade = CascadeType.ALL)
