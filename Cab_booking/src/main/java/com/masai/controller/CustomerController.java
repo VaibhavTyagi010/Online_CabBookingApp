@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.masai.service.CustomerService;
 import com.masai.entity.Customer;
 
 
 @RestController
+@RequestMapping("/api")
 public class CustomerController {
 	
 	@Autowired
@@ -31,11 +33,6 @@ public class CustomerController {
 	public List<Customer> getAllCustomer()
 	{    
 		return service.allCustomer();
-	}
-	@GetMapping("/customer/{Email}/{Password}")
-	public Customer getAllCustomer(@PathVariable("Email") String Email,@PathVariable("Password")String Password)
-	{    
-		return service.vaildCustomer(Email, Password);
 	}
 	
 	@PostMapping(value = "/save",consumes = "application/json")
