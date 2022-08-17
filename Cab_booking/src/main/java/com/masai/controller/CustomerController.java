@@ -32,11 +32,6 @@ public class CustomerController {
 	{    
 		return service.allCustomer();
 	}
-	@GetMapping("/customer/{Email}/{Password}")
-	public Customer getAllCustomer(@PathVariable("Email") String Email,@PathVariable("Password")String Password)
-	{    
-		return service.vaildCustomer(Email, Password);
-	}
 	
 	@PostMapping(value = "/save",consumes = "application/json")
 	public Customer SaveStudent(@Valid @RequestBody Customer customer)
