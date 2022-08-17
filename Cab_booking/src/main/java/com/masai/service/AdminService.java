@@ -20,7 +20,7 @@ public interface AdminService {
 	
 	public List<TripBooking> getAllTrips(Integer customerid) throws AdminExceptions;
 	
-	public List<TripBooking> getTripsCabwise(Cab cab);
+	public List<TripBooking> getTripsDriverwise();
 	
 	public List<TripBooking> getTripsCustomerwise();
 	

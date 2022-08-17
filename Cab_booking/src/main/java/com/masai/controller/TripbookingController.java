@@ -25,6 +25,7 @@ public class TripbookingController {
 	@Autowired
 	TripService service;
 	
+	
 	@PostMapping("/trip")
 	public TripBooking Add( @Valid @RequestBody TripBooking trip)
 	{
@@ -32,15 +33,15 @@ public class TripbookingController {
 	}
     
 	@GetMapping("/trips")
-	public ResponseEntity<List<TripBooking>> getAllCustomer()
+	public List<TripBooking> getAllCustomer()
 	{    
-		return new ResponseEntity<List<TripBooking>>(service.alltrip(),HttpStatus.ACCEPTED) ;
+		return service.alltrip() ;
 	}
-	@PutMapping("/tripupdate")
-	public TripBooking updateStudent(@Valid @RequestBody TripBooking trip)
+	@PutMapping("/tripupdate/{id}")
+	public TripBooking updateStudent(@Valid @RequestBody TripBooking trip,@PathVariable("id")Integer id)
 	{
 		
-		return service.updateTrip(trip);
+		return service.updateTrip(trip,id);
 	}
 	 @DeleteMapping("/tripdelete/{id}")
 		public String delete(@PathVariable("id")Integer id) {

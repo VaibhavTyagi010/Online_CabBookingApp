@@ -24,8 +24,8 @@ import lombok.NoArgsConstructor;
 @Data
 @PrimaryKeyJoinColumn(name="customerId")
 public class Customer extends Abstractuser {
+
 	
-	@AssertTrue
 	private boolean journey_status;
 	
 }

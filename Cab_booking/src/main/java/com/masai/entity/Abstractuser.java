@@ -4,12 +4,8 @@ package com.masai.entity;
 
 import java.io.Serializable;
 
-import javax.annotation.Generated;
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,27 +13,28 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.validation.constraints.Email;
+import lombok.ToString;
 
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-@Getter
-@Setter
+@Data
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class Abstractuser implements Serializable {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
+	@EqualsAndHashCode.Include
 	private Integer userId;
 	
 	@Size(min = 3, max = 255, message = "{nameRange}")
@@ -48,11 +45,15 @@ public abstract class Abstractuser implements Serializable {
 	@NotNull(message = "{notNull}")
 	private String Password;
 	
-//	@Size(min = 10, message = "{MobileRange}")
-	private Long Mobile;
+
+
+	@Size(min = 10, message = "{MobileRange}")
+	private String Mobile;
+
+
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="pincode")
+	@JoinColumn(name="id")
 	private Address address;
 	
 	@Email

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SecondaryTable;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 
@@ -20,8 +21,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
@@ -39,8 +42,6 @@ public class TripBooking {
 	   
 	   @OneToOne(cascade=CascadeType.ALL)
 	   @JoinColumn(name="driver_id",referencedColumnName = "driverID")
-	   @JsonIgnore
-	   @NonNull
 	   private Driver driver;
  
 	   @NotNull(message = "{From Location notNull}")
@@ -51,13 +52,13 @@ public class TripBooking {
 	   
 	   
 	    @FutureOrPresent(message = "{futOrPres}")
-	    @NotNull(message = "{notNull}")
+	    @NotNull(message = "{data not null}")
 	    @DateTimeFormat(pattern = "yyyy-MM-dd")
        private LocalDate Fromdate_time;
 	    
 	    
 	    @FutureOrPresent(message = "{futOrPres}")
-	    @NotNull(message = "{notNull}")
+	    @NotNull(message = "{data not null}")
 	    @DateTimeFormat(pattern = "yyyy-MM-dd")
        private LocalDate Todate_time;
 	   
