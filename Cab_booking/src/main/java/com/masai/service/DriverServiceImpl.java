@@ -10,6 +10,7 @@ import com.masai.entity.Cab;
 import com.masai.entity.Driver;
 import com.masai.exception.DriverNotFoundException;
 import com.masai.exception.InvalidId;
+import com.masai.repository.AddressDao;
 import com.masai.repository.CabDao;
 import com.masai.repository.DriverDao;
 @Service
@@ -20,6 +21,8 @@ public class DriverServiceImpl implements DriverService {
 	
 	@Autowired
 	private CabDao cDao;
+	@Autowired
+	private AddressDao Adao;
 	
 	@Override
 	public Driver insertDriver(Driver driver) {
@@ -59,16 +62,15 @@ public class DriverServiceImpl implements DriverService {
 
 	@Override
 
-	public Driver deleteDriverById(Integer id) throws DriverNotFoundException{
-		Optional<Driver> opt=dDao.findById(id);
-
-		if(opt.isPresent()) {
-			cDao.delete(opt.get().getCab());
-			dDao.delete(opt.get());
-			return opt.get();
-		}
-		else
-			throw new DriverNotFoundException("No Driver found ");
+	public String deleteDriverById(Integer id) throws DriverNotFoundException{
+          Driver d1=dDao.findById(id).orElseThrow(()-> new DriverNotFoundException("No Driver found"));
+        
+        cDao.deleteById(d1.getCab().getCabId());
+        Adao.delete(d1.getAddress());
+	    dDao.delete(d1);
+			
+	
+		return "Driver Id "+id+ " deleted ";
 	}
 
 	@Override

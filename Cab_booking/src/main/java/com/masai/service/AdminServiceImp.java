@@ -76,10 +76,12 @@ public class AdminServiceImp implements AdminService {
 	}
 
 	@Override
+
 	public List<TripBooking> getTripsDriverwise() {
 		List<TripBooking> list = tripDao.findByDriverAscs();
 		System.out.println(list);
 		return list;
+
 		
 	}
 
