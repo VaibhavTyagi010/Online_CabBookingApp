@@ -35,12 +35,12 @@ public class TripbookingController {
 	}
     
 	@GetMapping("/trips")
-	public List<TripBooking> getAllCustomer()
+	public List<TripBooking> getAlltrip()
 	{    
 		return service.alltrip() ;
 	}
 	@PutMapping("/tripupdate/{id}")
-	public TripBooking updateStudent(@Valid @RequestBody TripBooking trip,@PathVariable("id")Integer id)
+	public TripBooking updatetrip(@Valid @RequestBody TripBooking trip,@PathVariable("id")Integer id)
 	{
 		
 		return service.updateTrip(trip,id);
