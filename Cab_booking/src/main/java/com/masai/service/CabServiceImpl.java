@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.masai.entity.Cab;
 import com.masai.entity.Driver;
-import com.masai.exception.CabNotFoundException;
+import com.masai.exception.NotFoundException;
 import com.masai.exception.InvalidId;
 import com.masai.repository.CabDao;
 import com.masai.repository.DriverDao;
@@ -28,7 +28,7 @@ public class CabServiceImpl implements CabService {
 
 
 	@Override
-	public Cab updateCab(Integer id,String type, Integer rate) throws CabNotFoundException {
+	public Cab updateCab(Integer id,String type, Integer rate) throws NotFoundException {
 		// TODO Auto-generated method stub
 		java.util.Optional<Cab> opt = cDao.findById(id);
 	
@@ -55,7 +55,7 @@ public class CabServiceImpl implements CabService {
 			  
 		  }else
 		  {
-			  throw new CabNotFoundException("Cab Not Found");
+			  throw new NotFoundException("Cab Not Found");
 		  }
 		 
 
@@ -66,14 +66,14 @@ public class CabServiceImpl implements CabService {
 	
 
 	@Override
-	public List<String> viewCabsOfType() throws CabNotFoundException {
+	public List<String> viewCabsOfType() throws NotFoundException {
 		// TODO Auto-generated method stub
 		List<String> cabs = cDao.viewCarType();
 		return cabs;
 	}
 
 	@Override
-	public int countCabsOfType() throws CabNotFoundException {
+	public int countCabsOfType() throws NotFoundException {
 		// TODO Auto-generated method stub
 		List<Cab> listcab = cDao.findAll();
 		return listcab.size();

@@ -13,7 +13,7 @@ import com.masai.entity.Customer;
 import com.masai.entity.Driver;
 import com.masai.entity.TripBooking;
 import com.masai.exception.AdminExceptions;
-import com.masai.exception.CabNotFoundException;
+import com.masai.exception.NotFoundException;
 import com.masai.repository.AdminDao;
 import com.masai.repository.CabDao;
 import com.masai.repository.CustomerDao;
